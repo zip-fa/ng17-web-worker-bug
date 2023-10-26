@@ -11,4 +11,12 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'ng17-web-worker-bug';
+
+  constructor() {
+    const worker = new Worker(new URL('../worker', import.meta.url));
+
+    worker.onmessage = ({ data }) => {
+      console.log(data);
+    };
+  }
 }
